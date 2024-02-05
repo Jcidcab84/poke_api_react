@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 
 function Buscador({ handlePokemon }) {
   const [selectPokemon, setSelectPokemon] = useState('');
 
-  const handleClick = async () => {
+  const handleClick = async (e) => {
+    e.preventDefault()
     await handlePokemon(selectPokemon);
     setSelectPokemon('');
   };

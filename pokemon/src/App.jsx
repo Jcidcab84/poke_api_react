@@ -7,7 +7,7 @@ import Header from "./components/Header";
 
 function App() {
   const [selectedPokemon, setSelectedPokemon] = useState("");
-  const [pokemons, setPokemons] = useState([]); // Agregamos estado para almacenar todos los pokemones
+  const [pokemons, setPokemons] = useState([]);
 
   const handlePokemon = async (pokemonName) => {
     const response = await fetch(
@@ -24,20 +24,6 @@ function App() {
     setSelectedPokemon(data);
   };
 
-  const handleSortAscending = () => {
-    const sortedPokemons = [...pokemons].sort((a, b) =>
-      a.name.localeCompare(b.name)
-    );
-    setPokemons(sortedPokemons);
-  };
-
-  const handleSortDescending = () => {
-    const sortedPokemons = [...pokemons].sort((a, b) =>
-      b.name.localeCompare(a.name)
-    );
-    setPokemons(sortedPokemons);
-  };
-
   return (
     <>
     <Header />
@@ -46,8 +32,7 @@ function App() {
       <h1>Encuentra tu pokemon favorito</h1>
       <Buscador
         handlePokemon={handlePokemon}
-        handleSortAscending={handleSortAscending}
-        handleSortDescending={handleSortDescending}
+       
       />
       <div className="container d-flex justify-content-center">
         {selectedPokemon && (
@@ -67,7 +52,7 @@ function App() {
         {!selectedPokemon && (
           <MiApi pokemons={pokemons} setPokemons={setPokemons} />
         )}
-        {/* Pasamos el estado de pokemons al componente MiApi */}
+        {/*estado de pokemons al componente MiApi */}
       </div>
       <Footer />
     </div>
